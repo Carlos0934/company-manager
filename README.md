@@ -78,7 +78,7 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-# Project Structure
+## Project Structure
 
 ```
 src
@@ -121,3 +121,7 @@ src
 |   |   role.dtos.ts
 |   |   payroll.dtos.ts
 ```
+
+## License
+
+[MIT licensed](LICENSE).
