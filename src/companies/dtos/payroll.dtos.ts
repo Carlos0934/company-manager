@@ -12,7 +12,4 @@ export class PayrollInput {
 
   @Field(() => PayrollStatus, { nullable: true })
   status?: PayrollStatus;
-
-  @Field({ nullable: true })
-  date?: Date;
 }

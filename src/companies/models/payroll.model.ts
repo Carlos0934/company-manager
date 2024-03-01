@@ -31,10 +31,6 @@ export class Payroll {
   @Prop({ required: true, enum: Currency, default: Currency.USD })
   currency: Currency;
 
-  @Field()
-  @Prop({ required: true, default: new Date() })
-  date: Date;
-
   @Field(() => PayrollStatus)
   @Prop({
     required: true,
