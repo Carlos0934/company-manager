@@ -1,0 +1,164 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Company {
+  id: String!
+  name: String!
+  description: String!
+  address: String!
+  departments: [Department!]!
+  employees: [Employee!]!
+  roles: [Role!]!
+}
+
+type Department {
+  id: String!
+  name: String!
+  description: String!
+  companyId: String!
+}
+
+type Payroll {
+  id: String!
+  salary: Float!
+  currency: Currency!
+  date: DateTime!
+  status: PayrollStatus!
+}
+
+"""Currency type"""
+enum Currency {
+  USD
+  EUR
+  GBP
+  JPY
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+"""Status of the payroll"""
+enum PayrollStatus {
+  PENDING
+  PAID
+  CANCELLED
+}
+
+type Employee {
+  id: String!
+  name: String!
+  birthDate: DateTime!
+  idNumber: String!
+  email: String!
+  companyId: String!
+  departmentId: String
+  roleId: String
+  payroll: Payroll
+  role: Role
+  department: Department
+}
+
+type Role {
+  id: String!
+  name: String!
+  description: String!
+  companyId: String!
+}
+
+type Query {
+  companies: [Company!]!
+  getCompany(id: ID!): Company!
+  departments: [Department!]!
+  getDepartment(id: ID!): Department
+  employees: [Employee!]!
+  getEmployee(id: String!): Employee!
+  roles: [Role!]!
+  getRole(id: String!): Role!
+}
+
+type Mutation {
+  createCompany(input: CreateCompanyInput!): Company!
+  updateCompany(input: UpdateCompanyInput!): Company!
+  deleteCompany(id: ID!): Boolean!
+  createDepartment(input: CreateDepartmentInput!): Department!
+  updateDepartment(input: UpdateDepartmentInput!): Department!
+  deleteDepartment(id: ID!): Boolean!
+  createEmployee(input: CreateEmployeeInput!): Employee!
+  updateEmployee(input: UpdateEmployeeInput!): Employee!
+  deleteEmployee(id: String!): Boolean!
+  createRole(input: CreateRoleInput!): Role!
+  updateRole(input: UpdateRoleInput!): Role!
+  deleteRole(id: String!): Boolean!
+}
+
+input CreateCompanyInput {
+  name: String!
+  description: String
+  address: String!
+}
+
+input UpdateCompanyInput {
+  name: String
+  description: String
+  address: String
+  id: String!
+}
+
+input CreateDepartmentInput {
+  name: String!
+  description: String
+  companyId: String!
+}
+
+input UpdateDepartmentInput {
+  name: String
+  description: String
+  companyId: String
+  id: String!
+}
+
+input CreateEmployeeInput {
+  name: String!
+  birthDate: DateTime!
+  idNumber: String!
+  email: String!
+  departmentId: String
+  roleId: String
+  payroll: PayrollInput
+  companyId: String!
+}
+
+input PayrollInput {
+  salary: Float = 0
+  currency: Currency
+  status: PayrollStatus
+  date: DateTime
+}
+
+input UpdateEmployeeInput {
+  name: String
+  birthDate: DateTime
+  idNumber: String
+  email: String
+  departmentId: String
+  roleId: String
+  payroll: PayrollInput
+  companyId: String
+  id: String!
+}
+
+input CreateRoleInput {
+  name: String!
+  description: String
+  companyId: String!
+}
+
+input UpdateRoleInput {
+  name: String
+  description: String
+  companyId: String
+  id: String!
+}
