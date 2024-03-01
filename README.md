@@ -24,12 +24,22 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This is a simple graphql api for managing companies, departments, employees and roles. It is built with NestJS, MongoDb, and Apollo Server. It is a simple api that allows you to create, read, update and delete companies, departments, employees and roles. It also allows you to assign employees to departments and roles.
+
+You can use the api deployed on render at https://company-manager-sbw6.onrender.com/graphql
 
 ## Installation
 
 ```bash
 $ npm install
+```
+
+## Environment Variables
+
+add a .env file to the root of the project and add the following environment variables
+
+```bash
+MONGO_URI=your_mongo_uri
 ```
 
 ## Running the app
@@ -43,6 +53,16 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
+```
+
+## Running the app with docker
+
+```bash
+# build the docker image
+$ docker build -t company-manager --build-arg MONGO_URI=your_mongo_uri .
+
+# run the docker image
+$ docker run -p 3000:3000 company-manager
 ```
 
 ## Test
